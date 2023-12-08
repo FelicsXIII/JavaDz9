@@ -1,5 +1,32 @@
 public class Radio {
-    public int currentNumberRadioStation; // текущая станция
+
+    private int currentNumberRadioStation; // текущая станция
+
+    private int currentSoundVolume; // текущая громкость
+
+    private int setMaxNumberRadioStation() {
+        currentNumberRadioStation = 9; // макс номер станции
+        return currentNumberRadioStation;
+    }
+
+    private int setMinNumberRadioStation() {
+        currentNumberRadioStation = 0; // мин номер станции
+        return currentNumberRadioStation;
+    }
+
+    private int setMinSoundVolume() {
+        currentSoundVolume = 0; // мин громкость 0
+        return currentSoundVolume;
+    }
+
+    private int setMaxSoundVolume() {
+        currentSoundVolume = 100; // макс громкость 100
+        return currentSoundVolume;
+    }
+
+    public int getCurrentNumberRadioStation() {
+        return currentNumberRadioStation;
+    }
 
     public void setCurrentNumberRadioStation(int newCurrentNumberRadioStation) {
         if (newCurrentNumberRadioStation > 9) {
@@ -12,39 +39,9 @@ public class Radio {
 
     }
 
-    public int setMaxNumberRadioStation() {
-        currentNumberRadioStation = 9; // макс номер станции
-        return currentNumberRadioStation;
+    public int getCurrentSoundVolume() {
+        return currentSoundVolume;
     }
-
-    public int setMinNumberRadioStation() {
-        currentNumberRadioStation = 0; // мин номер станции
-        return currentNumberRadioStation;
-    }
-
-    public void nextNumberRadioStation(int currentNumber) { //увеличение номера радиостанции
-        if (currentNumber < 9) {
-            currentNumberRadioStation = currentNumber + 1; // если меньше 9 то +1
-        }
-        if (currentNumber == 9) {
-            currentNumberRadioStation = setMinNumberRadioStation(); // если 9 то мин номер
-        }
-    }
-
-    public void prevNumberRadioStation(int currentNumber) { //уменьшение номера радиостанции
-        if (currentNumber > 0) {
-            currentNumberRadioStation = currentNumber - 1; // если меньше 0 то -1
-        }
-        if (currentNumber == 0) {
-            currentNumberRadioStation = setMaxNumberRadioStation(); // если 0 то макс номер
-        }
-        if (currentNumber > 9) {
-            currentNumberRadioStation = setMinNumberRadioStation();
-        }
-    }
-
-
-    public int currentSoundVolume; // текущая громкость
 
     public void setCurrentSoundVolume(int newCurrentSoundVolume) {
         if (newCurrentSoundVolume > 100) {
@@ -54,39 +51,42 @@ public class Radio {
             newCurrentSoundVolume = setMinSoundVolume();
         }
         currentSoundVolume = newCurrentSoundVolume;
-
     }
 
-    public int setMaxSoundVolume() {
-        currentSoundVolume = 100; // макс громкость 100
-        return currentSoundVolume;
-    }
-
-    public int setMinSoundVolume() {
-        currentSoundVolume = 0; // мин громкость 0
-        return currentSoundVolume;
-    }
-
-    public void increaseVolume(int currentSound) { //увеличение громкости звука
-        if (currentSound < 100) {
-            currentSoundVolume = currentSound + 1; // если меньше 100 то +1
+    public void nextNumberRadioStation() { //увеличение номера радиостанции
+        if (currentNumberRadioStation < 9) {
+            currentNumberRadioStation++; // если меньше 9 то +1
         }
-        if (currentSound == 100) {
+        if (currentNumberRadioStation == 9) {
+            currentNumberRadioStation = setMinNumberRadioStation(); // если 9 то мин номер
+        }
+    }
+
+    public void prevNumberRadioStation() { //уменьшение номера радиостанции
+        if (currentNumberRadioStation > 0) {
+            currentNumberRadioStation--; // если меньше 0 то -1
+        }
+        if (currentNumberRadioStation == 0) {
+            currentNumberRadioStation = setMaxNumberRadioStation(); // если 0 то макс номер
+        }
+    }
+
+    public void increaseVolume() { //увеличение громкости звука
+        if (currentSoundVolume < 100) {
+            currentSoundVolume++; // если меньше 100 то +1
+        }
+        if (currentSoundVolume == 100) {
             currentSoundVolume = setMaxSoundVolume(); // если 100 то макс громкость
         }
     }
 
-    public void decreaseVolume(int currentSound) {  // уменьшение громкости звука
-        if (currentSound <= 0) {
+    public void decreaseVolume() {  // уменьшение громкости звука
+        if (currentSoundVolume <= 0) {
             currentSoundVolume = setMinSoundVolume(); // если меньше или равно 0 = мин громкость
         }
 
-        if (currentSound > 0) {
-            currentSoundVolume = currentSound - 1;
-        }
-
-        if (currentSound > 100) {
-            currentSoundVolume = setMaxSoundVolume(); // если 100 то макс громкость
+        if (currentSoundVolume > 0) {
+            currentSoundVolume--;
         }
     }
 }
