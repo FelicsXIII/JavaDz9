@@ -42,10 +42,10 @@ public class RadioTest {
 
     public void shouldNextNumberRadioStation() { // тест следующей станции
         Radio radio = new Radio();
-        radio.setCurrentNumberRadioStation(1);
+        radio.setCurrentNumberRadioStation(8);
         radio.nextNumberRadioStation();
 
-        int expected = 2;
+        int expected = 9;
         int actual = radio.getCurrentNumberRadioStation();
 
         Assertions.assertEquals(expected, actual);

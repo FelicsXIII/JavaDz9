@@ -57,7 +57,7 @@ public class Radio {
         if (currentNumberRadioStation < 9) {
             currentNumberRadioStation++; // если меньше 9 то +1
         }
-        if (currentNumberRadioStation == 9) {
+        else  {
             currentNumberRadioStation = setMinNumberRadioStation(); // если 9 то мин номер
         }
     }
@@ -66,7 +66,7 @@ public class Radio {
         if (currentNumberRadioStation > 0) {
             currentNumberRadioStation--; // если меньше 0 то -1
         }
-        if (currentNumberRadioStation == 0) {
+        else  {
             currentNumberRadioStation = setMaxNumberRadioStation(); // если 0 то макс номер
         }
     }
